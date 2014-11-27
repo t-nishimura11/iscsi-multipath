@@ -9,14 +9,23 @@ CentOS7もしくはFedora20をインストールしたマシンでKVMとvirt-ins
 
 ### ゲストセットアップ ###
 ゲスト用ネットワーク作成とゲスト作成用スクリプトの生成。
+
 	# sh ./make-create-scripts.sh
+
 target作成(ゲスト名:target)
+
 	# ./create-target.sh
+
 targetインストール完了後、ユーザ:**root** パスワード:**password**でログインして以下を実行。
+
 	# target-setup.sh
+
 initiator作成(ゲスト名:initiator)
+
 	# ./create-initiator.sh
+
 initiatorインストール完了後、ユーザ:root パスワード:password でログインして以下を実行。
+
 	# initiator-setup.sh
 
 ### 完了 ###
@@ -25,12 +34,15 @@ initiatorインストール完了後、ユーザ:root パスワード:password �
 
 ### クリーンアップ ###
 initiatorをインストール完了状態に戻すには以下のコマンドを実行。
+
 	# initiator-cleanup.sh
 
 targetをインストール完了状態に戻すには以下のコマンドを実行。
+
 	# target-cleanup.sh
 
 KVM ホストをKVMホストセットアップが完了した状態に戻すには以下のコマンドを実行。
+
 	# ./cleanup-initiator.sh
 	# ./cleanup-target.sh
 	# ./create-initiator.sh
