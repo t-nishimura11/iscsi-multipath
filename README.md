@@ -29,7 +29,7 @@ initiatorインストール完了後、ユーザ:i**root** パスワード:**pas
 	# initiator-setup.sh
 
 ### 完了 ###
-上記手順が正常に完了すると、multibus4パスの1GBデバイスがinitiatorの/mnt/iscsiに
+上記手順が正常に完了すると、multibus4パスの2GBデバイスがinitiatorの/mnt/iscsiに
 マウントされた状態になっている。
 
 クリーンアップ
