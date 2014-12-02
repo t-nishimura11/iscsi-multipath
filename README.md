@@ -5,7 +5,7 @@ CentOS7 を使用して4パスのiscsi-multipath環境を作成するスクリ�
 KVMホスト上に一時的なローカルネットワークを4つ作成して、それら4つのネットワーク
 に接続しているinitiatorとtargetのゲストを作成します。
 CentOS7もしくはFedora20をインストールしたマシンでKVMとvirt-installが使えること
-を前提としています。使用方法は以下の通りです。
+を前提としています。以下のの順序でセットアップを実行してください。
 
 ### ゲストセットアップ ###
 ゲスト用ネットワーク作成とゲスト作成用スクリプトの生成。
@@ -24,7 +24,7 @@ initiator作成(ゲスト名:initiator)
 
 	# ./create-initiator.sh
 
-initiatorインストール完了後、ユーザ:root パスワード:password でログインして以下を実行。
+initiatorインストール完了後、ユーザ:i**root** パスワード:**password** でログインして以下を実行。
 
 	# initiator-setup.sh
 
@@ -32,7 +32,8 @@ initiatorインストール完了後、ユーザ:root パスワード:password �
 上記手順が正常に完了すると、multibus4パスの1GBデバイスがinitiatorの/mnt/iscsiに
 マウントされた状態になっている。
 
-### クリーンアップ ###
+クリーンアップ
+==============
 initiatorをインストール完了状態に戻すには以下のコマンドを実行。
 
 	# initiator-cleanup.sh
@@ -41,7 +42,7 @@ targetをインストール完了状態に戻すには以下のコマンドを�
 
 	# target-cleanup.sh
 
-KVM ホストをKVMホストセットアップが完了した状態に戻すには以下のコマンドを実行。
+ゲストセットアップ前の状態に戻すには以下のコマンドを実行。
 
 	# ./cleanup-initiator.sh
 	# ./cleanup-target.sh
