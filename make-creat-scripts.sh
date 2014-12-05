@@ -1,7 +1,7 @@
 #!/bin/sh
 
 BASE_KS="iscsi-multipath-base.ks"
-TREE_IP="mirrors.mit.edu"
+TREE_HOST="mirrors.mit.edu"
 BASE_TREE="/centos/7/os/x86_64"
 
 IMG_DIR="/home/img"
@@ -9,7 +9,7 @@ mkdir -p ${IMG_DIR}
 
 for i in initiator target ; do
 	sed -e "s/HOSTNAME/${i}/g" ${BASE_KS}> ${i}.ks
-	sed -i "s:TREE_IP:${TREE_IP}:g" ${i}.ks
+	sed -i "s:TREE_HOST:${TREE_HOST}:g" ${i}.ks
 	sed -i "s:BASE_TREE:${BASE_TREE}:g" ${i}.ks
 	if [ "${i}" == "initiator" ]; then
 		sed -i "s/IP1/192.168.123.1/g" ${i}.ks
@@ -30,7 +30,7 @@ virt-install \\
 --name ${i} \\
 --ram 6144 --vcpus=6 \\
 --extra-args="console=tty0 console=ttyS0,115200n8 ks=file:/${i}.ks" \\
---location="http://${TREE_IP}${BASE_TREE}" \\
+--location="http://${TREE_HOST}${BASE_TREE}" \\
 --disk path=${IMG_DIR}/${i}.img,size=30 \\
 --nographics \\
 --accelerate \\

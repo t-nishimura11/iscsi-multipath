@@ -1,4 +1,4 @@
-url --url http://TREE_IPBASE_TREE/
+url --url http://TREE_HOSTBASE_TREE/
 
 # System bootloader configuration
 bootloader --location=mbr

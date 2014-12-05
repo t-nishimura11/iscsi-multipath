@@ -2,10 +2,8 @@ iscsi-multipath on KVM 環境作成スクリプト
 =========================================
 
 CentOS7 を使用して4パスのiscsi-multipath環境を作成するスクリプトです。
-KVMホスト上に一時的なローカルネットワークを4つ作成して、それら4つのネットワーク
-に接続しているinitiatorとtargetのゲストを作成します。
-CentOS7もしくはFedora20をインストールしたマシンでKVMとvirt-installが使えること
-を前提としています。以下のの順序でセットアップを実行してください。
+KVMホスト上に一時的なローカルネットワークを4つ作成して、それら4つのネットワークに接続しているinitiatorとtargetのゲストを作成します。
+CentOS7もしくはFedora20をインストールしたマシンでKVMとvirt-installが使えることを前提としています。以下に記載の順序でセットアップを実行してください。
 
 ### ゲストセットアップ ###
 ゲスト用ネットワーク作成とゲスト作成用スクリプトの生成。
@@ -32,8 +30,22 @@ initiatorインストール完了後、ユーザ:i**root** パスワード:**pas
 上記手順が正常に完了すると、multibus4パスの2GBデバイスがinitiatorの/mnt/iscsiに
 マウントされた状態になっている。
 
+
+
 クリーンアップ
 ==============
+### KVMホストのクリーンアップ ###
+ゲストセットアップ前の状態に戻すには以下のコマンドを実行。
+
+	# ./cleanup-initiator.sh
+	# ./cleanup-target.sh
+	# ./create-initiator.sh
+	# ./remove-tmp_files.sh
+	# rm -f ./remove-tmp_files.sh
+
+
+### ゲスト個別のiSCSI設定クリーンアップ ###
+
 initiatorをインストール完了状態に戻すには以下のコマンドを実行。
 
 	# initiator-cleanup.sh
@@ -42,10 +54,3 @@ targetをインストール完了状態に戻すには以下のコマンドを�
 
 	# target-cleanup.sh
 
-ゲストセットアップ前の状態に戻すには以下のコマンドを実行。
-
-	# ./cleanup-initiator.sh
-	# ./cleanup-target.sh
-	# ./create-initiator.sh
-	# ./remove-tmp_files.sh
-	# rm -f ./remove-tmp_files.sh
